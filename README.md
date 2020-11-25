@@ -11,14 +11,4 @@
    ```
 
 2. cd rnabertest/src/fakeAPI
-3. open new terminal and run  --> json-server --watch db.json
-
-
-
-![Screen Shot 2020-11-25 at 22.55.31](/Users/dimaswicaksono/Desktop/Screen Shot 2020-11-25 at 22.55.31.png)
-
-
-
-
-
-NOTE : **All these content assets in this project created by  ABERSOFT**
+3. open new terminal and run --> json-server --watch db.json
