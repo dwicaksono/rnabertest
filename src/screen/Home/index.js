@@ -1,10 +1,13 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
 import {StatusBar, Text,View,StyleSheet, Dimensions,Image} from 'react-native'
 import { UndrawPng } from '../../assets'
 import { Gap } from '../../components'
 import { baseColors, baseFonts } from '../../utils'
+  
 
 const Home = () =>{
+    
     return(
         <>
             <StatusBar barStyle="dark-content" backgroundColor={baseColors.white}/>

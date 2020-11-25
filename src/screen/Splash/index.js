@@ -2,16 +2,19 @@ import React, { useEffect } from 'react'
 import { StatusBar } from 'react-native'
 import { IconLogoAbersoft } from '../../assets'
 import { GradientBackground } from '../../components'
-import { baseColors } from '../../utils'
+import { baseColors, getData } from '../../utils'
 
 const Splash = ({navigation}) => {
-
+  
     useEffect(()=>{
-        setTimeout(()=>{            
-            navigation.replace('LoginRegister')            
-        },3000)
+        getData('email').then(res => {
+            if(res){
+                navigation.replace('Home')
+            }else{
+                navigation.replace('LoginRegister')
+            }
+        })
     },[])
-    
     
     return (
         <>

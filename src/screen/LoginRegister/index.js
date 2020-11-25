@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
-import { StatusBar } from 'react-native'
+import React,{useState,useEffect} from 'react'
+import { StatusBar, } from 'react-native'
 import { Button, Gap, GradientBackground, ModalRegisterLogin } from '../../components'
-import { baseColors,useForm } from '../../utils'
-
+import { baseColors,useForm ,getData, storeData} from '../../utils'
+import Axios from 'axios'
+import {showMessage} from 'react-native-flash-message'
 
 const LoginRegister = ({navigation}) => {
 
@@ -11,6 +12,19 @@ const LoginRegister = ({navigation}) => {
         email:'',
         password:''
     })
+    const [getLocal,setgetLocal] = useState('')
+    const [getDataUser,setGetDatUser] = useState([])
+
+    useEffect(() => {
+        getData('email').then(res =>{
+            setgetLocal(res)
+        })
+        Axios.get(`http://10.0.2.2:3000/users`).then(res =>{
+            setGetDatUser(res.data)
+        }).catch(err =>{
+            console.log(err)
+        })
+    }, [])
 
     const loginRegister = (type) => {
         if (type === 'register'){
@@ -23,10 +37,47 @@ const LoginRegister = ({navigation}) => {
         }
     }
 
+    const postData = (data) =>{
+        let {email,password} = data
+        let url = `http://10.0.2.2:3000/users`
+        Axios.post(url,data).then(res => {
+            if(res.status === 201){
+                storeData('email',email)
+                showMessage({
+                    message: `welcome ${email}`,
+                    type: "default",
+                    backgroundColor:baseColors.blue, // background color
+                    color: baseColors.white, 
+                  });
+                navigation.replace("Home")
+            }
+        }).catch(error => {console.log(error)})
+
+    }
+
     const loginRegisterButtonHandler = () => {
+        let cek = getDataUser.some(user =>{return user.email === forms.email}) 
+        if(cek){
+            showMessage({
+                message: `welcome ${forms.email}`,
+                type: "default",
+                backgroundColor:baseColors.blue, // background color
+                color: baseColors.white, 
+              });
+              storeData('email',forms.email)
+              navigation.replace('Home')
+            }else{
+                showMessage({
+                    message: `sorry email/password is wrong`,
+                    type: "default",
+                    backgroundColor:baseColors.black, // background color
+                    color: baseColors.white, 
+                  });
+                navigation.replace('LoginRegister')
+        }
         setPopUpModal({...popUpModal,login:false,register:false})
+        postData(forms)
         setForms('reset')
-        navigation.replace("Home")   
     }
     
 
