@@ -1,7 +1,7 @@
 **React-Native :**
 
 1. clone this repo https://github.com/dwicaksono/rnabertest.git
-2. open terminal, cd rnabertest --> yarn
+2. open terminal, cd rnabertest and run --> yarn
 3. run metro server -> yarn start, run device -> yarn android
 
 **SERVER FAKE API :**
@@ -15,11 +15,9 @@
 
 
 
-https://imgur.com/LwL2YQa
+![Screen Shot 2020-11-25 at 22.55.31](/Users/dimaswicaksono/Desktop/Screen Shot 2020-11-25 at 22.55.31.png)
 
-https://imgur.com/FFQYIbQ
 
-https://imgur.com/rKlkAQV
 
 
 
